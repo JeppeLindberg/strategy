@@ -1,32 +1,46 @@
-[gd_scene load_steps=12 format=3 uid="uid://btda5hmt2xgyf"]
+[gd_scene load_steps=16 format=3 uid="uid://btda5hmt2xgyf"]
 
 [ext_resource type="Script" uid="uid://8eoc8s3tervk" path="res://scripts/main.gd" id="1_p1hux"]
 [ext_resource type="Script" uid="uid://b1byeluvmyhrc" path="res://scripts/world.gd" id="1_v0l8b"]
 [ext_resource type="Script" uid="uid://uqejw36g56iv" path="res://scripts/resources.gd" id="2_p1hux"]
 [ext_resource type="PackedScene" uid="uid://jfdlrevmk7pf" path="res://prefabs/tile.tscn" id="2_v0l8b"]
 [ext_resource type="Script" uid="uid://cdyle3nbvinef" path="res://scripts/buildings.gd" id="3_b5f6u"]
+[ext_resource type="PackedScene" uid="uid://ba2vydmgxrtds" path="res://prefabs/resource.tscn" id="3_mswub"]
 [ext_resource type="PackedScene" uid="uid://bo2s01buiggu" path="res://prefabs/shrine.tscn" id="3_wp4xf"]
-[ext_resource type="PackedScene" uid="uid://b8spdtjgndokl" path="res://prefabs/selector.tscn" id="4_brvut"]
+[ext_resource type="PackedScene" uid="uid://b8spdtjgndokl" path="res://prefabs/tile_selector.tscn" id="4_brvut"]
 [ext_resource type="Script" uid="uid://ca6udtxfmlrht" path="res://scripts/tile_actions.gd" id="4_tqoya"]
 [ext_resource type="PackedScene" uid="uid://cqw00jcjd62pi" path="res://prefabs/action.tscn" id="5_k65ib"]
+[ext_resource type="PackedScene" uid="uid://rgqwqn62kriw" path="res://prefabs/building_ui.tscn" id="5_v2gmf"]
 [ext_resource type="Script" uid="uid://s58akkg46ts3" path="res://scripts/debug.gd" id="6_4j5ol"]
+[ext_resource type="Script" uid="uid://c1d76xtjlb0nk" path="res://scripts/upgrades.gd" id="7_mswub"]
 [ext_resource type="Theme" uid="uid://duqm1qimmqmfp" path="res://fonts/bold_pixels_theme.tres" id="8_of57s"]
+[ext_resource type="PackedScene" uid="uid://cf5xwn3ec2tli" path="res://prefabs/upgrade.tscn" id="12_wscrc"]
 
 [node name="main" type="Node2D" node_paths=PackedStringArray("debug")]
 script = ExtResource("1_p1hux")
 debug = NodePath("ui/debug")
 
-[node name="resources" type="Node2D" parent="." node_paths=PackedStringArray("resources_ui")]
+[node name="resources" type="Node2D" parent="." node_paths=PackedStringArray("upgrades", "resources_ui")]
 script = ExtResource("2_p1hux")
+upgrades = NodePath("../upgrades")
 resources_ui = NodePath("../ui/right_container/resources")
+resource_prefab = ExtResource("3_mswub")
 
-[node name="buildings" type="Node2D" parent="."]
+[node name="buildings" type="Node2D" parent="." node_paths=PackedStringArray("buildings_ui")]
 script = ExtResource("3_b5f6u")
+building_ui_prefab = ExtResource("5_v2gmf")
+buildings_ui = NodePath("../ui/right_container/buildings")
 
 [node name="tile_actions" type="Node2D" parent="." node_paths=PackedStringArray("tile_actions_ui")]
 script = ExtResource("4_tqoya")
 tile_actions_ui = NodePath("../ui/left_container/tile_actions")
 action_prefab = ExtResource("5_k65ib")
+
+[node name="upgrades" type="Node2D" parent="." node_paths=PackedStringArray("upgrades_ui", "buildings")]
+script = ExtResource("7_mswub")
+upgrade_prefab = ExtResource("12_wscrc")
+upgrades_ui = NodePath("../ui/upgrades")
+buildings = NodePath("../buildings")
 
 [node name="camera" type="Camera2D" parent="."]
 
@@ -35,12 +49,9 @@ script = ExtResource("1_v0l8b")
 
 [node name="tile" parent="world" instance=ExtResource("2_v0l8b")]
 
-[node name="sprite" parent="world/tile" index="0"]
-self_modulate = Color(0.972549, 0.901961, 0.815686, 1)
-
 [node name="shrine" parent="world/tile/buildings" index="0" instance=ExtResource("3_wp4xf")]
 
-[node name="selector" parent="world/tile" node_paths=PackedStringArray("tile_actions") instance=ExtResource("4_brvut")]
+[node name="tile_selector" parent="world/tile" node_paths=PackedStringArray("tile_actions") instance=ExtResource("4_brvut")]
 position = Vector2(1, 0)
 tile_actions = NodePath("../../../tile_actions")
 
@@ -70,51 +81,32 @@ position = Vector2(-100, 0)
 
 [node name="ui" type="CanvasLayer" parent="."]
 
-[node name="debug" type="Control" parent="ui" node_paths=PackedStringArray("debug_text")]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("6_4j5ol")
-debug_text = NodePath("text")
-
-[node name="text" type="Label" parent="ui/debug"]
-texture_filter = 1
-layout_mode = 1
-offset_right = 40.0
-offset_bottom = 23.0
-theme = ExtResource("8_of57s")
-text = "ASD"
-
 [node name="right_container" type="HBoxContainer" parent="ui"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 0
 
-[node name="resources" type="Control" parent="ui/right_container"]
+[node name="resources" type="ColorRect" parent="ui/right_container"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+color = Color(0.12549, 0.0313726, 0.0862745, 1)
 
-[node name="text" type="Label" parent="ui/right_container/resources"]
-texture_filter = 1
+[node name="container" type="VBoxContainer" parent="ui/right_container/resources"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("8_of57s")
-text = "ASD"
-horizontal_alignment = 2
-vertical_alignment = 1
+alignment = 1
 
-[node name="buildings" type="Control" parent="ui/right_container"]
+[node name="buildings" type="ColorRect" parent="ui/right_container"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+color = Color(0.12549, 0.0313726, 0.0862745, 1)
 
 [node name="container" type="VBoxContainer" parent="ui/right_container/buildings"]
 layout_mode = 1
@@ -125,24 +117,20 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="rat_den" type="Label" parent="ui/right_container/buildings/container"]
-texture_filter = 1
-layout_mode = 2
-theme = ExtResource("8_of57s")
-text = "Rat Den"
-horizontal_alignment = 2
-
 [node name="left_container" type="HBoxContainer" parent="ui"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
 alignment = 2
 
-[node name="tile_actions" type="Control" parent="ui/left_container"]
-custom_minimum_size = Vector2(150, 0)
+[node name="tile_actions" type="ColorRect" parent="ui/left_container"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+color = Color(0.12549, 0.0313726, 0.0862745, 1)
 
 [node name="container" type="VBoxContainer" parent="ui/left_container/tile_actions"]
 layout_mode = 1
@@ -152,5 +140,33 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
+
+[node name="upgrades" type="HBoxContainer" parent="ui"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="debug" type="Control" parent="ui" node_paths=PackedStringArray("debug_text")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("6_4j5ol")
+debug_text = NodePath("text")
+
+[node name="text" type="Label" parent="ui/debug"]
+texture_filter = 1
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("8_of57s")
+text = "ASD"
 
 [editable path="world/tile"]

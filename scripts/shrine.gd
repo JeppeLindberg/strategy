@@ -12,6 +12,7 @@ func _ready() -> void:
 
 func activate():
 	resources.tears += 1
+	resources.fervor += 1
 
 func add_action():
 	tile_actions.add_action(action_text)

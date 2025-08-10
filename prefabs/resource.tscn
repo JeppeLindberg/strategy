@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://ba2vydmgxrtds"]
+
+[ext_resource type="Theme" uid="uid://duqm1qimmqmfp" path="res://fonts/bold_pixels_theme.tres" id="1_5s1jr"]
+[ext_resource type="Script" uid="uid://cin6kg72n251b" path="res://scripts/resource.gd" id="1_qujwx"]
+
+[node name="resource" type="Button" node_paths=PackedStringArray("text_label")]
+custom_minimum_size = Vector2(0, 20)
+offset_right = 8.0
+offset_bottom = 20.0
+focus_mode = 0
+script = ExtResource("1_qujwx")
+text_label = NodePath("text_holder/text")
+
+[node name="icon_holder" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="text_holder" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(80, 30)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 10.0
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="text" type="Label" parent="text_holder"]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("1_5s1jr")
+text = "0/10"
+horizontal_alignment = 2
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://rgqwqn62kriw"]
+
+[ext_resource type="Script" uid="uid://bhv5x27i5wobl" path="res://scripts/building_ui.gd" id="1_w0aor"]
+[ext_resource type="Theme" uid="uid://duqm1qimmqmfp" path="res://fonts/bold_pixels_theme.tres" id="2_37ew6"]
+
+[node name="building" type="Button" node_paths=PackedStringArray("text_label")]
+custom_minimum_size = Vector2(0, 20)
+offset_right = 8.0
+offset_bottom = 20.0
+focus_mode = 0
+script = ExtResource("1_w0aor")
+text_label = NodePath("text_holder/text")
+
+[node name="text_holder" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 10.0
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="text" type="Label" parent="text_holder"]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("2_37ew6")
+text = "Rat Den"
+horizontal_alignment = 2
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
