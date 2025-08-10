@@ -1,0 +1,156 @@
+[gd_scene load_steps=12 format=3 uid="uid://btda5hmt2xgyf"]
+
+[ext_resource type="Script" uid="uid://8eoc8s3tervk" path="res://scripts/main.gd" id="1_p1hux"]
+[ext_resource type="Script" uid="uid://b1byeluvmyhrc" path="res://scripts/world.gd" id="1_v0l8b"]
+[ext_resource type="Script" uid="uid://uqejw36g56iv" path="res://scripts/resources.gd" id="2_p1hux"]
+[ext_resource type="PackedScene" uid="uid://jfdlrevmk7pf" path="res://prefabs/tile.tscn" id="2_v0l8b"]
+[ext_resource type="Script" uid="uid://cdyle3nbvinef" path="res://scripts/buildings.gd" id="3_b5f6u"]
+[ext_resource type="PackedScene" uid="uid://bo2s01buiggu" path="res://prefabs/shrine.tscn" id="3_wp4xf"]
+[ext_resource type="PackedScene" uid="uid://b8spdtjgndokl" path="res://prefabs/selector.tscn" id="4_brvut"]
+[ext_resource type="Script" uid="uid://ca6udtxfmlrht" path="res://scripts/tile_actions.gd" id="4_tqoya"]
+[ext_resource type="PackedScene" uid="uid://cqw00jcjd62pi" path="res://prefabs/action.tscn" id="5_k65ib"]
+[ext_resource type="Script" uid="uid://s58akkg46ts3" path="res://scripts/debug.gd" id="6_4j5ol"]
+[ext_resource type="Theme" uid="uid://duqm1qimmqmfp" path="res://fonts/bold_pixels_theme.tres" id="8_of57s"]
+
+[node name="main" type="Node2D" node_paths=PackedStringArray("debug")]
+script = ExtResource("1_p1hux")
+debug = NodePath("ui/debug")
+
+[node name="resources" type="Node2D" parent="." node_paths=PackedStringArray("resources_ui")]
+script = ExtResource("2_p1hux")
+resources_ui = NodePath("../ui/right_container/resources")
+
+[node name="buildings" type="Node2D" parent="."]
+script = ExtResource("3_b5f6u")
+
+[node name="tile_actions" type="Node2D" parent="." node_paths=PackedStringArray("tile_actions_ui")]
+script = ExtResource("4_tqoya")
+tile_actions_ui = NodePath("../ui/left_container/tile_actions")
+action_prefab = ExtResource("5_k65ib")
+
+[node name="camera" type="Camera2D" parent="."]
+
+[node name="world" type="Node2D" parent="."]
+script = ExtResource("1_v0l8b")
+
+[node name="tile" parent="world" instance=ExtResource("2_v0l8b")]
+
+[node name="sprite" parent="world/tile" index="0"]
+self_modulate = Color(0.972549, 0.901961, 0.815686, 1)
+
+[node name="shrine" parent="world/tile/buildings" index="0" instance=ExtResource("3_wp4xf")]
+
+[node name="selector" parent="world/tile" node_paths=PackedStringArray("tile_actions") instance=ExtResource("4_brvut")]
+position = Vector2(1, 0)
+tile_actions = NodePath("../../../tile_actions")
+
+[node name="tile2" parent="world" instance=ExtResource("2_v0l8b")]
+position = Vector2(-100, -100)
+
+[node name="tile3" parent="world" instance=ExtResource("2_v0l8b")]
+position = Vector2(0, -100)
+
+[node name="tile4" parent="world" instance=ExtResource("2_v0l8b")]
+position = Vector2(100, -100)
+
+[node name="tile5" parent="world" instance=ExtResource("2_v0l8b")]
+position = Vector2(100, 0)
+
+[node name="tile6" parent="world" instance=ExtResource("2_v0l8b")]
+position = Vector2(100, 100)
+
+[node name="tile7" parent="world" instance=ExtResource("2_v0l8b")]
+position = Vector2(0, 100)
+
+[node name="tile8" parent="world" instance=ExtResource("2_v0l8b")]
+position = Vector2(-100, 100)
+
+[node name="tile9" parent="world" instance=ExtResource("2_v0l8b")]
+position = Vector2(-100, 0)
+
+[node name="ui" type="CanvasLayer" parent="."]
+
+[node name="debug" type="Control" parent="ui" node_paths=PackedStringArray("debug_text")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_4j5ol")
+debug_text = NodePath("text")
+
+[node name="text" type="Label" parent="ui/debug"]
+texture_filter = 1
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("8_of57s")
+text = "ASD"
+
+[node name="right_container" type="HBoxContainer" parent="ui"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="resources" type="Control" parent="ui/right_container"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="text" type="Label" parent="ui/right_container/resources"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_of57s")
+text = "ASD"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="buildings" type="Control" parent="ui/right_container"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="container" type="VBoxContainer" parent="ui/right_container/buildings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="rat_den" type="Label" parent="ui/right_container/buildings/container"]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("8_of57s")
+text = "Rat Den"
+horizontal_alignment = 2
+
+[node name="left_container" type="HBoxContainer" parent="ui"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="tile_actions" type="Control" parent="ui/left_container"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="container" type="VBoxContainer" parent="ui/left_container/tile_actions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[editable path="world/tile"]

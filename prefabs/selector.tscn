@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8spdtjgndokl"]
+
+[ext_resource type="Script" uid="uid://cl284kwcnq8jg" path="res://scripts/selector.gd" id="1_5hvmm"]
+[ext_resource type="Texture2D" uid="uid://ywwylbqawmb6" path="res://sprites/arrow_head.png" id="1_omqky"]
+
+[node name="selector" type="Node2D"]
+script = ExtResource("1_5hvmm")
+
+[node name="visual" type="Node2D" parent="."]
+
+[node name="sprite" type="Sprite2D" parent="visual"]
+self_modulate = Color(0.368627, 0.54902, 0.317647, 1)
+position = Vector2(0, -36)
+rotation = -3.14159
+scale = Vector2(0.262591, 0.262591)
+texture = ExtResource("1_omqky")

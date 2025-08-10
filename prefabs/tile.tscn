@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://jfdlrevmk7pf"]
+
+[ext_resource type="Script" uid="uid://camup78ep3hw6" path="res://scripts/tile.gd" id="1_awyw7"]
+[ext_resource type="Texture2D" uid="uid://b2faltudt0813" path="res://sprites/white.png" id="1_nsn1e"]
+
+[node name="tile" type="Node2D" node_paths=PackedStringArray("buildings")]
+script = ExtResource("1_awyw7")
+buildings = NodePath("buildings")
+
+[node name="sprite" type="Sprite2D" parent="."]
+self_modulate = Color(0.972549, 0.901961, 0.815686, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_nsn1e")
+
+[node name="buildings" type="Node2D" parent="."]

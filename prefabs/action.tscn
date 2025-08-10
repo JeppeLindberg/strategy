@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqw00jcjd62pi"]
+
+[ext_resource type="Theme" uid="uid://duqm1qimmqmfp" path="res://fonts/bold_pixels_theme.tres" id="1_j1pfl"]
+
+[node name="action" type="Label"]
+texture_filter = 1
+theme = ExtResource("1_j1pfl")
+text = "Pray
+
++1 tears"
+vertical_alignment = 1

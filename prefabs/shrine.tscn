@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://bo2s01buiggu"]
+
+[ext_resource type="Texture2D" uid="uid://b2faltudt0813" path="res://sprites/white.png" id="1_8y8ad"]
+[ext_resource type="Script" uid="uid://dqoy23kxpth0o" path="res://scripts/shrine.gd" id="1_tsbto"]
+[ext_resource type="Theme" uid="uid://duqm1qimmqmfp" path="res://fonts/bold_pixels_theme.tres" id="2_64gan"]
+
+[node name="shrine" type="Node2D"]
+script = ExtResource("1_tsbto")
+action_text = "Pray
+
++1 tear"
+
+[node name="visual" type="Node2D" parent="."]
+scale = Vector2(0.15, 0.15)
+
+[node name="sprite" type="Sprite2D" parent="visual"]
+self_modulate = Color(0.12549, 0.0313726, 0.0862745, 1)
+texture = ExtResource("1_8y8ad")
+
+[node name="label" type="Label" parent="visual"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_64gan")
+theme_override_font_sizes/font_size = 64
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
