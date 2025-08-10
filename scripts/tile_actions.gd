@@ -13,4 +13,4 @@ func add_action(action_text):
 	var new_action = action_prefab.instantiate()
 	tile_actions_ui.get_node('container').add_child(new_action)
 	new_action.position = Vector2.ZERO
-	new_action.text = action_text
+	new_action.text_label.text = action_text

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b8spdtjgndokl"]
 
-[ext_resource type="Script" uid="uid://cl284kwcnq8jg" path="res://scripts/selector.gd" id="1_5hvmm"]
+[ext_resource type="Script" uid="uid://cl284kwcnq8jg" path="res://scripts/tile_selector.gd" id="1_5hvmm"]
 [ext_resource type="Texture2D" uid="uid://ywwylbqawmb6" path="res://sprites/arrow_head.png" id="1_omqky"]
 
 [node name="tile_selector" type="Node2D"]

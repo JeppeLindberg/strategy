@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqw00jcjd62pi"]
+
+[ext_resource type="Theme" uid="uid://duqm1qimmqmfp" path="res://fonts/bold_pixels_theme.tres" id="1_j1pfl"]
+[ext_resource type="Script" uid="uid://cdstbapb81rgu" path="res://scripts/tile_action_ui.gd" id="2_qwhjr"]
+
+[node name="tile_action_ui" type="Control" node_paths=PackedStringArray("text_label")]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme = ExtResource("1_j1pfl")
+script = ExtResource("2_qwhjr")
+text_label = NodePath("text")
+
+[node name="text" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+autowrap_mode = 2

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bo2s01buiggu"]
 
 [ext_resource type="Texture2D" uid="uid://b2faltudt0813" path="res://sprites/white.png" id="1_8y8ad"]
-[ext_resource type="Script" uid="uid://dqoy23kxpth0o" path="res://scripts/shrine.gd" id="1_tsbto"]
+[ext_resource type="Script" uid="uid://dqoy23kxpth0o" path="res://scripts/buildings/shrine.gd" id="1_tsbto"]
 [ext_resource type="Theme" uid="uid://duqm1qimmqmfp" path="res://fonts/bold_pixels_theme.tres" id="2_64gan"]
 
 [node name="shrine" type="Node2D"]

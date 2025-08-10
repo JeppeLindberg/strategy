@@ -24,14 +24,17 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="text" type="Label" parent="upgrade/text_holder"]
+[node name="text" type="RichTextLabel" parent="upgrade/text_holder"]
 texture_filter = 1
 layout_mode = 2
 theme = ExtResource("1_p6beg")
+bbcode_enabled = true
 text = "Rat Den
+(building)
 
-+1 tears per day"
+5 tears -> 1 rat"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="button_holder" type="MarginContainer" parent="upgrade"]
 layout_mode = 1

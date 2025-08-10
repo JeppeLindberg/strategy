@@ -1,7 +1,7 @@
 extends CenterContainer
 
 
-@export var text_label: Label
+@export var text_label: RichTextLabel
 
 signal on_activate()
 
