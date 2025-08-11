@@ -15,5 +15,7 @@ func add_rat_den():
 
 func build_rat_den():
 	var new_rat_den_building = rat_den_building_prefab.instantiate()
-	tile_selector.get_parent().buildings.add_child(new_rat_den_building)
-	tile_selector.move_to(tile_selector.get_parent())
+	var tile = tile_selector.get_parent()
+	if tile.get_building() == null:
+		tile.buildings.add_child(new_rat_den_building)
+		tile_selector.move_to(tile)

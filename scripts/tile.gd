@@ -23,4 +23,9 @@ func add_actions():
 		if building.is_in_group('activateable'):
 			building.add_action()
 
+func get_building():
+	for building in buildings.get_children():
+		return building
+	return null
+
 
